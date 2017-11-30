@@ -34,7 +34,7 @@ function lineProgress(config) {
 	this.gradStop = '#81ccff';
 	this.progress = config.current;
 	this._shadow_progress = 0;
-	this.draw();
+	this.draw(this.progress);
 }
 lineProgress.prototype.draw = function(progress) {
 	this.progress = progress;
@@ -81,12 +81,12 @@ lineProgress.prototype.drawText = function() {
 	this.ctx.lineWidth = 2;
 	this.ctx.textAlign = 'center';
 	this.ctx.font = '12px';
-	this.ctx.fillText(this._shadow_progress/100 * 100 + '%', (this.width - this.progressWidth)/2 + this.progressWidth * this._shadow_progress/100, 14);
+	this.ctx.fillText(Math.floor(this._shadow_progress/100 * 100) + '%', (this.width - this.progressWidth)/2 + this.progressWidth * this._shadow_progress/100, 14);
 	this.ctx.closePath();
 }
 lineProgress.prototype.restart = function() {
 	this._shadow_progress = 0;
-	this.draw();
+	this.draw(0);
 }
 /**
  * [drawRadiusRect]
